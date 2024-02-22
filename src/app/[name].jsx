@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import client from "../graphqlClient";
+import NewSetInput from "../components/NewSetInput";
 
 const exerciseQuery = gql`
   query exercises($name: String) {
@@ -63,6 +64,8 @@ export default function ExerciseDetailsScreen() {
           {isOpen ? "See less" : "See more"}
         </Text>
       </View>
+
+      <NewSetInput />
     </ScrollView>
   );
 }
