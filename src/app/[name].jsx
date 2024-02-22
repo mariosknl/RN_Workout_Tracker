@@ -44,38 +44,44 @@ export default function ExerciseDetailsScreen() {
   if (!exercise) {
     return <Text>Exercise not found</Text>;
   }
+  console.log(exercise.muscle);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View contentContainerStyle={styles.container}>
       <Stack.Screen options={{ title: exercise.name }} />
-      <View style={styles.panel}>
-        <Text style={styles.exerciseName}>{exercise.name}</Text>
 
-        <Text style={styles.exerciseSubTitle}>
-          <Text style={styles.subValue}>{exercise.muscle}</Text> |{" "}
-          <Text style={styles.subValue}>{exercise.equipment}</Text>
-        </Text>
-      </View>
+      <SetsList
+        ListHeaderComponent={() => (
+          <View style={{ gap: 10 }}>
+            <View style={styles.panel}>
+              <Text style={styles.exerciseName}>{exercise.name}</Text>
 
-      <View style={styles.panel}>
-        <Text style={styles.instructions} numberOfLines={isOpen ? 0 : 3}>
-          {exercise.instructions}
-        </Text>
-        <Text onPress={() => setIsOpen(!isOpen)} style={styles.seeMore}>
-          {isOpen ? "See less" : "See more"}
-        </Text>
-      </View>
+              <Text style={styles.exerciseSubTitle}>
+                <Text style={styles.subValue}>{exercise.muscle}</Text> |{" "}
+                <Text style={styles.subValue}>{exercise.equipment}</Text>
+              </Text>
+            </View>
 
-      <NewSetInput exerciseName={exercise.name} />
-      <SetsList />
-    </ScrollView>
+            <View style={styles.panel}>
+              <Text style={styles.instructions} numberOfLines={isOpen ? 0 : 3}>
+                {exercise.instructions}
+              </Text>
+              <Text onPress={() => setIsOpen(!isOpen)} style={styles.seeMore}>
+                {isOpen ? "See less" : "See more"}
+              </Text>
+            </View>
+
+            <NewSetInput exerciseName={exercise.name} />
+          </View>
+        )}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    gap: 10,
   },
   panel: {
     backgroundColor: "white",
