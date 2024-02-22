@@ -1,0 +1,29 @@
+type InsertSetResponse {
+  insertedId: String
+}
+
+input NewSet {
+  exercise: String!
+  reps: Int!
+  weight: Float
+}
+
+type Mutation {
+  insertSet(
+    collection: String!
+    dataSource: String!
+    database: String!
+    document: NewSet!
+  ): InsertSetResponse
+    @rest(
+      method: POST
+      endpoint: "https://eu-central-1.aws.data.mongodb-api.com/app/data-wdwce/endpoint/data/v1/action/insertOne"
+      headers: [
+        { name: "accept", value: "application/json" }
+        {
+          name: "apikey"
+          value: "LZlDub77l4HVFIQSZ3UXd8ahclTZ4SlEYUeXUZSdsRnfLup4QploL7i8Em2B3lo1"
+        }
+      ]
+    )
+}
