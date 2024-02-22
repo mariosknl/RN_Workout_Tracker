@@ -4,7 +4,8 @@ export const ExerciseListItem = ({ item }) => (
   <View style={styles.exerciseContainer}>
     <Text style={styles.exerciseName}>{item.name}</Text>
     <Text style={styles.exerciseSubTitle}>
-      {item.muscle.toUpperCase()} | {item.equipment.toUpperCase()}
+      <Text style={styles.subValue}>{item.muscle}</Text> |{" "}
+      <Text style={styles.subValue}>{item.equipment}</Text>
     </Text>
   </View>
 );
@@ -22,5 +23,8 @@ const styles = StyleSheet.create({
   },
   exerciseSubTitle: {
     color: "dimgray",
+  },
+  subValue: {
+    textTransform: "capitalize",
   },
 });
