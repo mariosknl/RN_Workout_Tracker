@@ -12,6 +12,7 @@ import {
 import client from "../graphqlClient";
 import NewSetInput from "../components/NewSetInput";
 import SetsList from "../components/SetsList";
+import ProgressGraph from "../components/ProgressGraph";
 
 const exerciseQuery = gql`
   query exercises($name: String) {
@@ -72,6 +73,7 @@ export default function ExerciseDetailsScreen() {
               </Text>
             </View>
 
+            <ProgressGraph />
             <NewSetInput exerciseName={exercise.name} />
           </View>
         )}

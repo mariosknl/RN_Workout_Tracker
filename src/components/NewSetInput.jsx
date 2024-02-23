@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
     borderRadius: 5,
-    // flexDirection: "row",
     gap: 5,
   },
   row: {
