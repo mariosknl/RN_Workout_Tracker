@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { ExerciseListItem } from "../components/ExerciseListItem";
 import client from "../graphqlClient";
+import { Redirect } from "expo-router";
+import { useAuth } from "../providers/AuthContext";
 
 const exercisesQuery = gql`
   query exercises($muscle: String, $name: String) {
@@ -26,6 +28,7 @@ export default function ExercisesScreen() {
     queryKey: ["exercises"],
     queryFn: () => client.request(exercisesQuery),
   });
+  const { username } = useAuth();
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -33,6 +36,10 @@ export default function ExercisesScreen() {
 
   if (error) {
     return <Text>Failed to fetch exercises</Text>;
+  }
+
+  if (!username) {
+    return <Redirect href={"/auth"} />;
   }
 
   return (
