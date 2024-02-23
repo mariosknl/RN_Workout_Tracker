@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { gql } from "graphql-request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import client from "../graphqlClient";
+import { useAuth } from "../providers/AuthContext";
 
 const mutationDocument = gql`
   mutation InsertSet($newSet: NewSet!) {
@@ -20,6 +21,7 @@ const mutationDocument = gql`
 const NewSetInput = ({ exerciseName }) => {
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
+  const { username } = useAuth();
 
   const queryClient = useQueryClient();
 
@@ -33,6 +35,7 @@ const NewSetInput = ({ exerciseName }) => {
   });
 
   const newSet = {
+    username,
     exercise: exerciseName,
     reps: Number.parseInt(reps),
   };
